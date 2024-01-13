@@ -1,3 +1,5 @@
+# 强烈推荐使用功能更全的【✨多合一动态检测与推送✨】：https://github.com/nfe-w/aio-dynamic-push
+
 # douyin_dynamic_push
 
 ## 声明:
@@ -5,12 +7,21 @@
 - 本仓库发布的`douyin_dynamic_push`项目中涉及的任何脚本，仅用于测试和学习研究，禁止用于商业用途
 - `nfe-w` 对任何脚本问题概不负责，包括但不限于由任何脚本错误导致的任何损失或损害
 - 以任何方式查看此项目的人或直接或间接使用`douyin_dynamic_push`项目的任何脚本的使用者都应仔细阅读此声明
-- `douyin_dynamic_push` 保留随时更改或补充此免责声明的权利。一旦使用并复制了任何相关脚本或`douyin_dynamic_push`项目，则视为已接受此免责声明
+- `nfe-w` 保留随时更改或补充此免责声明的权利。一旦使用并复制了任何相关脚本或`douyin_dynamic_push`项目，则视为已接受此免责声明
 - 本项目遵循`MIT LICENSE`协议，如果本声明与`MIT LICENSE`协议有冲突之处，以本声明为准
 
 ## 简介
 
 定时检测指定作者的动态，如果发生变化进行推送
+
+## Docker（推荐）
+
+[![](https://img.shields.io/badge/DockerHub-nfew/douyin__dynamic__push-367AC7?style=flat-square&logo=Docker&logoColor=white)](https://hub.docker.com/r/nfew/douyin_dynamic_push)
+
+```sh
+# 启动容器
+docker run -d -v ~/config_douyin.ini:/mnt/config_douyin.ini --name douyin_dynamic_push nfew/douyin_dynamic_push:latest
+```
 
 ## 运行环境
 
@@ -23,10 +34,9 @@
 (1)`config`下的参数
 
 - `signature_server_url`为签名服务器url，参考 https://github.com/coder-fly/douyin-signature
-- `uid_list`为需要扫描的作者uid列表，使用英文逗号分隔，必填（可以从抖音个人主页分享链接，用浏览器打开，从url中获取）
-- `sec_uid_list`为需要扫描的作者sec_uid列表，使用英文逗号分隔，需与uid_list对应，必填
-- `room_id_list`为需要扫描的直播间房间号列表，使用英文逗号分隔
-- `user_account_list`为用于检测开播状态的用户账号列表，使用英文逗号分隔
+- `username_list`为需要扫描的作者名称列表，使用英文逗号分隔，必填（接口现在不返回作者信息了，重新获取还挺麻烦的，自己填上凑合用先）
+- `sec_uid_list`为需要扫描的作者sec_uid列表，使用英文逗号分隔，需与username_list对应，必填（网页版抖音打开用户首页，url获取，例如 https://www.douyin.com/user/MS4wLjABAAAAGeiluJjizroSmPhcNdlsS0b7M0rxi5ygfrtqdByE0FCYi__j0fS_E52uGaF7ujpn）
+- `user_account_list`为用于检测开播状态的抖音号列表，使用英文逗号分隔
 - `intervals_second`为扫描间隔秒数，不建议过于频繁，必填
 - `begin_time`为扫描开始时间，非必填，不支持跨日期
 - `end_time`为扫描停止时间，非必填，不支持跨日期
